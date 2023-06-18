@@ -19,4 +19,15 @@ export const theme = createTheme({
     },
     tertiary: { main: "#595653" },
   },
+  components: {
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          ":last-child": {
+            paddingBottom: "40px",
+          },
+        },
+      },
+    },
+  },
 });

@@ -1,8 +1,14 @@
 import { Container } from "@mui/material";
+import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
-import Shop from "../Shop/Shop";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => navigate("/shop"), [navigate]);
+
   return (
     <Container
       disableGutters
@@ -13,7 +19,7 @@ const Home = () => {
       }}
     >
       <Header />
-      <Shop />
+      <Outlet />
     </Container>
   );
 };

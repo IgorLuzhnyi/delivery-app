@@ -1,22 +1,24 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
 import {
   Container,
   Grid,
   Stack,
   Button,
   Typography,
-  Divider,
+  Tabs,
+  Tab,
 } from "@mui/material";
-import CustomLink from "../reusable components/CustomLink";
+import Product from "../Product/Product";
 import { db } from "../../db/db";
 import { theme } from "../../theme";
-import ShopMenu from "./ShopMenu";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Shop = () => {
   const [shopIndex, setShopIndex] = useState(0);
-  const navigate = useNavigate();
+  const currentMenu = Object.keys(db[shopIndex].menu);
+  const [categoryIndex, setCategoryIndex] = useState(0);
+
+  useEffect(() => setCategoryIndex(0), [shopIndex]);
 
   return (
     <Container>
@@ -39,13 +41,10 @@ const Shop = () => {
               <Button
                 key={uuidv4()}
                 sx={{
-                  color: i === shopIndex ? theme.palette.primary.main : "#fff",
+                  color: i === shopIndex ? "primary.main" : "#fff",
                   "&:hover": { color: "primary.main" },
                 }}
-                onClick={() => {
-                  setShopIndex(i);
-                  navigate("/shop");
-                }}
+                onClick={() => setShopIndex(i)}
               >
                 {brand.restaurantName}
               </Button>
@@ -59,30 +58,59 @@ const Shop = () => {
               borderRadius: 3,
             }}
           >
-            <Stack
-              direction="row"
-              divider={
-                <Divider
-                  orientation="vertical"
-                  variant="middle"
-                  flexItem
-                  sx={{ backgroundColor: "#fff" }}
+            <Tabs value={categoryIndex} sx={{ padding: "5px 10px" }}>
+              {currentMenu.map((menuCategory, i) => (
+                <Tab
+                  label={menuCategory}
+                  onClick={() => setCategoryIndex(i)}
+                  key={uuidv4()}
+                  sx={{
+                    ml: 2,
+                    mr: 2,
+                    color: "#fff",
+                    "&:hover": {
+                      color: "primary.main",
+                    },
+                  }}
                 />
-              }
-              sx={{ padding: "10px 20px" }}
-            >
-              {Object.keys(db[shopIndex].menu).map((category, i) => (
-                <CustomLink to={`shop/${category}`} key={uuidv4()}>
-                  {category}
-                </CustomLink>
               ))}
-            </Stack>
-            <Divider
-              variant="middle"
-              flexItem
-              sx={{ backgroundColor: "#fff" }}
-            />
-            <ShopMenu shopIndex={shopIndex} />
+            </Tabs>
+            <Grid
+              container
+              sx={{
+                maxHeight: "83vh",
+                overflowY: "auto",
+                borderTop: `1vh solid ${theme.palette.tertiary.main}`,
+                borderBottom: `2vh solid ${theme.palette.tertiary.main}`,
+                scrollbarWidth: "10px",
+                scrollbarGutter: "stable both-edges",
+                "::-webkit-scrollbar": {
+                  backgroundColor: "#42454a",
+                  width: "10px",
+                  position: "absolute",
+                  right: "0",
+                },
+                "::-webkit-scrollbar-thumb": {
+                  backgroundColor: "#e3e3e3",
+                },
+              }}
+            >
+              {db[shopIndex].menu[currentMenu[categoryIndex]].map((prod) => (
+                <Grid
+                  item
+                  key={uuidv4()}
+                  lg={6}
+                  sx={{
+                    mt: 2,
+                    mb: 2,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Product data={prod} />
+                </Grid>
+              ))}
+            </Grid>
           </Container>
         </Grid>
       </Grid>

@@ -1,6 +1,9 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const db = [
   {
     restaurantName: "Mc Donny",
+    id: uuidv4(),
     menu: {
       burgers: [
         {
@@ -101,6 +104,7 @@ export const db = [
   },
   {
     restaurantName: "CFK",
+    id: uuidv4(),
     menu: {
       burgers: [
         {
@@ -195,6 +199,7 @@ export const db = [
   },
   {
     restaurantName: "Chicken Home",
+    id: uuidv4(),
     menu: {
       burgers: [
         {

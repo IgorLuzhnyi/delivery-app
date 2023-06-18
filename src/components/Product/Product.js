@@ -31,6 +31,18 @@ const Product = ({ data }) => {
         image={data.img}
         alt={data.name}
       />
+      <Typography
+        variant="body"
+        sx={{
+          mt: 1,
+          fontSize: "20px",
+          position: "absolute",
+          bottom: "10px",
+          right: "15px",
+        }}
+      >
+        Count: {2}
+      </Typography>
       <CardContent>
         <Typography variant="h4">{data.mealName}</Typography>
         <Typography variant="body">{data.description}</Typography>

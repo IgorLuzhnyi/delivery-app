@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home/Home";
-import ShopMenu from "./components/Shop/ShopMenu";
+import Shop from "./components/Shop/Shop";
+import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
 const router = createBrowserRouter([
   {
@@ -12,13 +13,12 @@ const router = createBrowserRouter([
     element: <Home />,
     children: [
       {
-        path: "shop",
-        element: <Home />,
-        index: true,
+        path: "shop/",
+        element: <Shop />,
       },
       {
-        path: "shop/:category",
-        element: <ShopMenu />,
+        path: "shopping-cart",
+        element: <ShoppingCart />,
       },
     ],
   },
