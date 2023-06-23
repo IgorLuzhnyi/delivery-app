@@ -12,11 +12,15 @@ import Product from "../Product/Product";
 import { db } from "../../db/db";
 import { theme } from "../../theme";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { removeAll } from "../../redux/cart";
 
 const Shop = () => {
   const [shopIndex, setShopIndex] = useState(0);
   const currentMenu = Object.keys(db[shopIndex].menu);
   const [categoryIndex, setCategoryIndex] = useState(0);
+
+  const dispatch = useDispatch();
 
   useEffect(() => setCategoryIndex(0), [shopIndex]);
 
@@ -58,23 +62,39 @@ const Shop = () => {
               borderRadius: 3,
             }}
           >
-            <Tabs value={categoryIndex} sx={{ padding: "5px 10px" }}>
-              {currentMenu.map((menuCategory, i) => (
-                <Tab
-                  label={menuCategory}
-                  onClick={() => setCategoryIndex(i)}
-                  key={uuidv4()}
-                  sx={{
-                    ml: 2,
-                    mr: 2,
-                    color: "#fff",
-                    "&:hover": {
-                      color: "primary.main",
-                    },
-                  }}
-                />
-              ))}
-            </Tabs>
+            <Stack direction="row" justifyContent="space-between">
+              <Tabs value={categoryIndex} sx={{ padding: "5px 10px" }}>
+                {currentMenu.map((menuCategory, i) => (
+                  <Tab
+                    label={menuCategory}
+                    onClick={() => setCategoryIndex(i)}
+                    key={uuidv4()}
+                    sx={{
+                      ml: 2,
+                      mr: 2,
+                      color: "#fff",
+                      "&:hover": {
+                        color: "primary.main",
+                      },
+                    }}
+                  />
+                ))}
+              </Tabs>
+              <Button
+                sx={{
+                  color: "#fff",
+                  textTransform: "capitalize",
+                  "&:hover": {
+                    transition: "0s",
+                    color: "primary.main",
+                    backgroundColor: "transparent",
+                  },
+                }}
+                onClick={() => dispatch(removeAll())}
+              >
+                clear all
+              </Button>
+            </Stack>
             <Grid
               container
               sx={{

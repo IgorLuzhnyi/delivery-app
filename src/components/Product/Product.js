@@ -9,18 +9,29 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, removeProduct } from "../../redux/cart";
 
 const Product = ({ data }) => {
+  const dispatch = useDispatch();
+  const mealCount = useSelector((state) => state.cart[data.mealName]);
+
   return (
     <Card sx={{ maxWidth: 345, position: "relative" }}>
       <Box sx={{ p: 1, position: "absolute", right: 1 }}>
-        <Tooltip title="Add to cart">
-          <IconButton size="small">
+        <Tooltip title="Add to cart" placement="top">
+          <IconButton
+            size="small"
+            onClick={() => dispatch(addProduct(data.mealName))}
+          >
             <AddIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Remove from cart">
-          <IconButton size="small">
+        <Tooltip title="Remove from cart" placement="top">
+          <IconButton
+            size="small"
+            onClick={() => dispatch(removeProduct(data.mealName))}
+          >
             <RemoveIcon />
           </IconButton>
         </Tooltip>
@@ -41,7 +52,7 @@ const Product = ({ data }) => {
           right: "15px",
         }}
       >
-        Count: {2}
+        Count: {mealCount ? mealCount : 0}
       </Typography>
       <CardContent>
         <Typography variant="h4">{data.mealName}</Typography>

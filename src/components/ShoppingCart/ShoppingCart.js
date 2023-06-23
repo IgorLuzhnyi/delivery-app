@@ -1,5 +1,11 @@
+import { Stack } from "@mui/material";
+
 const ShoppingCart = () => {
-  return <div>This is Shopping Cart</div>;
+  return (
+    <Stack direction="row">
+      <Stack></Stack>
+    </Stack>
+  );
 };
 
 export default ShoppingCart;

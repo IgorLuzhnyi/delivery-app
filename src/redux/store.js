@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import restaurantIndex from "./restaurantIndexSlice";
+import cart from "./cart";
 
 export const store = configureStore({
   reducer: {
-    restaurantIndex,
+    cart,
   },
 });
