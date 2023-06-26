@@ -18,6 +18,7 @@ export const theme = createTheme({
       main: "#1a1919",
     },
     tertiary: { main: "#595653" },
+    inputBgColor: "#e0e0e0",
   },
   components: {
     MuiCardContent: {

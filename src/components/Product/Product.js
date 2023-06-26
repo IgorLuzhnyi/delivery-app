@@ -14,7 +14,7 @@ import { addProduct, removeProduct } from "../../redux/cart";
 
 const Product = ({ data }) => {
   const dispatch = useDispatch();
-  const mealCount = useSelector((state) => state.cart[data.mealName]);
+  // const mealCount = useSelector((state) => state.cart[data.mealName]);
 
   return (
     <Card sx={{ maxWidth: 345, position: "relative" }}>
@@ -50,9 +50,10 @@ const Product = ({ data }) => {
           position: "absolute",
           bottom: "10px",
           right: "15px",
+          // color: mealCount ? "primary.main" : "inherit",
         }}
       >
-        Count: {mealCount ? mealCount : 0}
+        {/* Count: {mealCount ? mealCount : 0} */}
       </Typography>
       <CardContent>
         <Typography variant="h4">{data.mealName}</Typography>

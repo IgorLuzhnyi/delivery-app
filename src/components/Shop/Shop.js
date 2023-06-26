@@ -10,9 +10,8 @@ import {
 } from "@mui/material";
 import Product from "../Product/Product";
 import { db } from "../../db/db";
-import { theme } from "../../theme";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeAll } from "../../redux/cart";
 
 const Shop = () => {
@@ -20,9 +19,13 @@ const Shop = () => {
   const currentMenu = Object.keys(db[shopIndex].menu);
   const [categoryIndex, setCategoryIndex] = useState(0);
 
+  const cart = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
 
   useEffect(() => setCategoryIndex(0), [shopIndex]);
+
+  useEffect(() => console.log(cart), [cart]);
 
   return (
     <Container>
@@ -100,8 +103,9 @@ const Shop = () => {
               sx={{
                 maxHeight: "83vh",
                 overflowY: "auto",
-                borderTop: `1vh solid ${theme.palette.tertiary.main}`,
-                borderBottom: `2vh solid ${theme.palette.tertiary.main}`,
+                borderTop: "1vh solid",
+                borderBottom: "2vh solid",
+                borderColor: "tertiary.main",
                 scrollbarWidth: "10px",
                 scrollbarGutter: "stable both-edges",
                 "::-webkit-scrollbar": {
