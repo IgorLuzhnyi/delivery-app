@@ -14,7 +14,11 @@ import { addProduct, removeProduct } from "../../redux/cart";
 
 const Product = ({ data }) => {
   const dispatch = useDispatch();
-  // const mealCount = useSelector((state) => state.cart[data.mealName]);
+  const productCount = useSelector(
+    (state) =>
+      state.cart.find((product) => product.productName === data.productName)
+        ?.count
+  );
 
   return (
     <Card sx={{ maxWidth: 345, position: "relative" }}>
@@ -22,7 +26,7 @@ const Product = ({ data }) => {
         <Tooltip title="Add to cart" placement="top">
           <IconButton
             size="small"
-            onClick={() => dispatch(addProduct(data.mealName))}
+            onClick={() => dispatch(addProduct(data.productName))}
           >
             <AddIcon />
           </IconButton>
@@ -30,7 +34,7 @@ const Product = ({ data }) => {
         <Tooltip title="Remove from cart" placement="top">
           <IconButton
             size="small"
-            onClick={() => dispatch(removeProduct(data.mealName))}
+            onClick={() => dispatch(removeProduct(data.productName))}
           >
             <RemoveIcon />
           </IconButton>
@@ -50,13 +54,13 @@ const Product = ({ data }) => {
           position: "absolute",
           bottom: "10px",
           right: "15px",
-          // color: mealCount ? "primary.main" : "inherit",
+          color: productCount ? "primary.main" : "inherit",
         }}
       >
-        {/* Count: {mealCount ? mealCount : 0} */}
+        Count: {productCount ? productCount : 0}
       </Typography>
       <CardContent>
-        <Typography variant="h4">{data.mealName}</Typography>
+        <Typography variant="h4">{data.productName}</Typography>
         <Typography variant="body">{data.description}</Typography>
       </CardContent>
     </Card>

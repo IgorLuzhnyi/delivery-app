@@ -7,21 +7,37 @@ export const cart = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
-      if (state.includes()) {
+      const existingProduct = state.find(
+        (product) => product.productName === action.payload
+      );
+
+      if (existingProduct) {
+        return state.forEach((product) =>
+          product === existingProduct
+            ? (product.count = product.count + 1)
+            : product
+        );
       } else return [...state, { productName: action.payload, count: 1 }];
     },
+
+    removeProduct: (state, action) => {
+      const existingProduct = state.find(
+        (product) => product.productName === action.payload
+      );
+
+      if (existingProduct && existingProduct.count === 1) {
+        return state.filter((product) => product !== existingProduct);
+      } else if (existingProduct && existingProduct.count > 1) {
+        return state.forEach((product) =>
+          product === existingProduct
+            ? (product.count = product.count - 1)
+            : product
+        );
+      } else return;
+    },
+
+    removeAll: () => [],
   },
-  // removeProduct: (state, action) => {
-  //   if (state[action.payload] === 1) {
-  //     delete state[action.payload];
-  //     return state;
-  //   } else
-  //     return {
-  //       ...state,
-  //       [action.payload]: state[action.payload] - 1,
-  //     };
-  // },
-  removeAll: () => [],
 });
 
 export const { addProduct, removeProduct, removeAll } = cart.actions;
