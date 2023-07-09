@@ -122,7 +122,7 @@ const Shop = () => {
               {db[shopIndex].menu[currentMenu[categoryIndex]].map((prod) => (
                 <Grid
                   item
-                  key={uuidv4()}
+                  key={prod.id}
                   lg={6}
                   sx={{
                     mt: 2,

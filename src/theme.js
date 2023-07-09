@@ -1,5 +1,30 @@
 import { createTheme } from "@mui/material";
 
+export const classes = {
+  basicInputsClass: {
+    backgroundColor: "inputBgColor.main",
+    "&:focus-within": {
+      backgroundColor: "inputBgColor.focused",
+    },
+    m: 3,
+  },
+
+  inputLabelClass: {
+    "&.MuiInputLabel-root": {
+      marginTop: "-8px",
+    },
+    "&.MuiInputLabel-shrink": {
+      transform: "translate(0, -16px) scale(0.8)",
+    },
+  },
+
+  filledInputClass: {
+    "& .MuiFilledInput-input": {
+      paddingTop: "10px",
+    },
+  },
+};
+
 export const theme = createTheme({
   // breakpoints: {
   //   values: {
@@ -18,7 +43,10 @@ export const theme = createTheme({
       main: "#1a1919",
     },
     tertiary: { main: "#595653" },
-    inputBgColor: "#e0e0e0",
+    inputBgColor: {
+      main: "#e0e0e0",
+      focused: "#fff",
+    },
   },
   components: {
     MuiCardContent: {

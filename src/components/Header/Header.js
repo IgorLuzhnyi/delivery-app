@@ -1,5 +1,5 @@
 import { Container, Stack, Divider } from "@mui/material";
-import CustomLink from "../reusable components/CustomLink";
+import CustomLink from "../reusable_components/CustomLink";
 
 const Header = () => {
   return (

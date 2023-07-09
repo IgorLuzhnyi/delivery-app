@@ -1,6 +1,8 @@
 import { Stack, FormControl, FilledInput, InputLabel } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { classes } from "../../theme";
+import CartProduct from "../Header/CartProduct/CartProduct";
 
 const ShoppingCart = () => {
   const [userName, setUserName] = useState("");
@@ -12,29 +14,6 @@ const ShoppingCart = () => {
 
   console.log(cart);
 
-  const formControlClass = {
-    backgroundColor: "inputBgColor",
-    "&:focus-within": {
-      backgroundColor: "#fff",
-    },
-    m: 3,
-  };
-
-  const inputLabelClass = {
-    "&.MuiInputLabel-root": {
-      marginTop: "-8px",
-    },
-    "&.MuiInputLabel-shrink": {
-      transform: "translate(0, -20px) scale(0.8)",
-    },
-  };
-
-  const filledInputClass = {
-    "& .MuiFilledInput-input": {
-      paddingTop: "10px",
-    },
-  };
-
   // const handleSubmit = () => console.log("Submitted");
 
   return (
@@ -42,57 +21,78 @@ const ShoppingCart = () => {
       <Stack
         sx={{
           p: 3,
+          width: "44%",
           border: "2px solid",
           borderColor: "primary.main",
           borderRadius: "5px",
+          alignSelf: "flex-start",
         }}
       >
-        <FormControl sx={formControlClass}>
-          <InputLabel htmlFor="name" variant="outlined" sx={inputLabelClass}>
+        <FormControl sx={classes.basicInputsClass}>
+          <InputLabel
+            htmlFor="name"
+            variant="outlined"
+            sx={classes.inputLabelClass}
+          >
             Name
           </InputLabel>
           <FilledInput
-            sx={filledInputClass}
+            sx={classes.filledInputClass}
             id="name"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
         </FormControl>
-        <FormControl sx={formControlClass}>
-          <InputLabel htmlFor="email" sx={inputLabelClass}>
+        <FormControl sx={classes.basicInputsClass}>
+          <InputLabel htmlFor="email" sx={classes.inputLabelClass}>
             Email
           </InputLabel>
           <FilledInput
-            sx={filledInputClass}
+            sx={classes.filledInputClass}
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </FormControl>
-        <FormControl sx={formControlClass}>
-          <InputLabel htmlFor="phone" sx={inputLabelClass}>
+        <FormControl sx={classes.basicInputsClass}>
+          <InputLabel htmlFor="phone" sx={classes.inputLabelClass}>
             Phone
           </InputLabel>
           <FilledInput
-            sx={filledInputClass}
+            sx={classes.filledInputClass}
             id="phone"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
         </FormControl>
-        <FormControl sx={formControlClass}>
-          <InputLabel htmlFor="address" sx={inputLabelClass}>
+        <FormControl sx={classes.basicInputsClass}>
+          <InputLabel htmlFor="address" sx={classes.inputLabelClass}>
             Address
           </InputLabel>
           <FilledInput
-            sx={filledInputClass}
+            sx={classes.filledInputClass}
             id="address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
         </FormControl>
       </Stack>
-      <Stack sx={{ p: 2 }}>{}</Stack>
+      <Stack
+        sx={{
+          p: 3,
+          width: "44%",
+          border: "2px solid",
+          borderColor: "primary.main",
+          borderRadius: "5px",
+          alignSelf: "flex-start",
+        }}
+      >
+        {cart
+          ? cart.map((product) => (
+              <CartProduct data={product} key={product.id} />
+            ))
+          : "Cart is empty"}
+      </Stack>
     </Stack>
   );
 };

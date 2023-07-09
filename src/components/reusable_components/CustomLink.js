@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const CustomLink = styled(NavLink)(({ theme }) => ({
   textDecoration: "none",
-  color: theme.palette.primary.main,
+  color: "#fff",
   padding: "5px",
   margin: "0 10px",
   borderRadius: "3px",
@@ -12,12 +12,12 @@ const CustomLink = styled(NavLink)(({ theme }) => ({
   textTransform: "capitalize",
 
   "&.active": {
-    color: "#fff",
+    color: theme.palette.primary.main,
     textDecoration: "underline",
   },
 
   "&:hover": {
-    color: "#fff",
+    color: theme.palette.primary.main,
     textDecoration: "underline",
     transition: ".2s",
   },
