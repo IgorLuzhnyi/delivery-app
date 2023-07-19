@@ -1,8 +1,14 @@
-import { Stack, FormControl, FilledInput, InputLabel } from "@mui/material";
+import {
+  Stack,
+  FormControl,
+  FilledInput,
+  InputLabel,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { classes } from "../../theme";
-import CartProduct from "../Header/CartProduct/CartProduct";
+import CartProduct from "./CartProduct/CartProduct";
 
 const ShoppingCart = () => {
   const [userName, setUserName] = useState("");
@@ -87,11 +93,13 @@ const ShoppingCart = () => {
           alignSelf: "flex-start",
         }}
       >
-        {cart
-          ? cart.map((product) => (
-              <CartProduct data={product} key={product.id} />
-            ))
-          : "Cart is empty"}
+        {cart[0] ? (
+          cart.map((product) => <CartProduct data={product} key={product.id} />)
+        ) : (
+          <Typography variant="h5" sx={{ color: "#fff", textAlign: "center" }}>
+            No orders yet...
+          </Typography>
+        )}
       </Stack>
     </Stack>
   );

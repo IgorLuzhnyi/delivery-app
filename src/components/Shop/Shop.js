@@ -8,7 +8,7 @@ import {
   Tabs,
   Tab,
 } from "@mui/material";
-import Product from "../Product/Product";
+import Product from "./Product/Product";
 import { db } from "../../db/db";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

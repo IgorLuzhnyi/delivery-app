@@ -11,10 +11,12 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct, removeProduct } from "../../redux/cart";
+import { addProduct, removeProduct } from "../../../redux/cart";
+import { MAX_PRODUCT_COUNT } from "../../../constants/constants";
 
 const Product = ({ data }) => {
   const { productName, img, price, description } = data;
+
   const dispatch = useDispatch();
   const productCount = useSelector(
     (state) =>
@@ -22,11 +24,23 @@ const Product = ({ data }) => {
         ?.count
   );
 
+  const reachedMaxCount = productCount === MAX_PRODUCT_COUNT;
+
   return (
     <Card sx={{ maxWidth: 345, position: "relative" }}>
       <Box sx={{ p: 1, position: "absolute", right: 1 }}>
-        <Tooltip title="Add to cart" placement="top">
-          <IconButton size="small" onClick={() => dispatch(addProduct(data))}>
+        <Tooltip
+          title={
+            reachedMaxCount
+              ? `Maximum count of ${MAX_PRODUCT_COUNT} is reached`
+              : "Add to cart"
+          }
+          placement="top"
+        >
+          <IconButton
+            size="small"
+            onClick={() => reachedMaxCount || dispatch(addProduct(data))}
+          >
             <AddIcon />
           </IconButton>
         </Tooltip>

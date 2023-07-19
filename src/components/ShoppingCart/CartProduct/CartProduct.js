@@ -5,18 +5,28 @@ import {
   Typography,
   IconButton,
   Input,
+  Tooltip,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addByNumber, removeProduct } from "../../../redux/cart";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { MAX_PRODUCT_COUNT } from "../../../constants/constants";
 
 const CartProduct = ({ data }) => {
   const { productName, img, count, price, id } = data;
+  const [showWarning, setShowWarning] = useState(false);
   const [cartProductCount, setCartProductCount] = useState(count);
 
   const dispatch = useDispatch();
+
+  const warningHandler = () => {
+    setShowWarning(true);
+    setTimeout(() => {
+      setShowWarning(false);
+    }, 1600);
+  };
 
   useEffect(() => {
     setCartProductCount(count);
@@ -65,28 +75,38 @@ const CartProduct = ({ data }) => {
           <IconButton onClick={() => dispatch(removeProduct(data))}>
             <RemoveIcon sx={iconStyles} />
           </IconButton>
-          <Input
-            inputProps={{
-              style: { textAlign: "center" },
-            }}
-            value={cartProductCount}
-            onChange={(event) =>
-              !isNaN(Number(event.target.value)) &&
-              setCartProductCount(Number(event.target.value))
-            }
-            sx={{
-              backgroundColor: "inputBgColor.main",
-              width: "60px",
-              "&:focus-within": {
-                backgroundColor: "inputBgColor.focused",
-              },
-            }}
-          />
+          <Tooltip
+            title={`Maximum count is ${MAX_PRODUCT_COUNT}`}
+            placement="bottom"
+            open={showWarning}
+          >
+            <Input
+              inputProps={{
+                style: { textAlign: "center" },
+              }}
+              value={cartProductCount}
+              onChange={(event) => {
+                if (!isNaN(Number(event.target.value))) {
+                  if (Number(event.target.value) > MAX_PRODUCT_COUNT) {
+                    warningHandler();
+                  } else setCartProductCount(Number(event.target.value));
+                }
+              }}
+              sx={{
+                backgroundColor: "inputBgColor.main",
+                width: "60px",
+                "&:focus-within": {
+                  backgroundColor: "inputBgColor.focused",
+                },
+              }}
+            />
+          </Tooltip>
           <IconButton
-            onClick={() => {
-              console.log(cartProductCount);
-              dispatch(addByNumber({ count: cartProductCount + 1, id }));
-            }}
+            onClick={() =>
+              cartProductCount === MAX_PRODUCT_COUNT
+                ? warningHandler()
+                : dispatch(addByNumber({ count: cartProductCount + 1, id }))
+            }
           >
             <AddIcon sx={iconStyles} />
           </IconButton>
