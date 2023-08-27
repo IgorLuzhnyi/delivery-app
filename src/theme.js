@@ -26,15 +26,15 @@ export const classes = {
 };
 
 export const theme = createTheme({
-  // breakpoints: {
-  //   values: {
-  //     xl: 1920,
-  //     lg: 1280,
-  //     md: 960,
-  //     sm: 600,
-  //     xs: 0,
-  //   },
-  // },
+  breakpoints: {
+    values: {
+      xl: 1920,
+      lg: 1280,
+      md: 960,
+      sm: 600,
+      xs: 0,
+    },
+  },
   palette: {
     primary: {
       main: "#e68920",

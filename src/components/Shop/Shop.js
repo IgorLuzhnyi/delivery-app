@@ -11,8 +11,7 @@ import {
 import Product from "./Product/Product";
 import { db } from "../../db/db";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeAll } from "../../redux/cart";
+import { useSelector } from "react-redux";
 
 const Shop = () => {
   const [shopIndex, setShopIndex] = useState(0);
@@ -20,8 +19,6 @@ const Shop = () => {
   const [categoryIndex, setCategoryIndex] = useState(0);
 
   const cart = useSelector((state) => state.cart);
-
-  const dispatch = useDispatch();
 
   useEffect(() => setCategoryIndex(0), [shopIndex]);
 
@@ -33,17 +30,29 @@ const Shop = () => {
         <Grid
           item
           lg={3}
+          md={12}
+          sm={12}
+          xs={12}
           sx={{
             p: 3,
             backgroundColor: "tertiary.main",
             borderRadius: 3,
             alignSelf: "flex-start",
+            display: "flex",
+            flexDirection: { lg: "column", md: "row", sm: "row", xs: "column" },
           }}
         >
           <Typography variant="h4" sx={{ textAlign: "center" }}>
             Shops:
           </Typography>
-          <Stack sx={{ mt: 3 }}>
+          <Stack
+            sx={{
+              mt: { lg: 3, md: 0, sm: 0 },
+              ml: { lg: 0, md: 3, sm: 3 },
+              justifyContent: { md: "space-between" },
+            }}
+            direction={{ lg: "column", md: "row", sm: "row", xs: "column" }}
+          >
             {db.map((brand, i) => (
               <Button
                 key={uuidv4()}
@@ -58,46 +67,46 @@ const Shop = () => {
             ))}
           </Stack>
         </Grid>
-        <Grid item lg={9} sx={{ pl: 3 }}>
+        <Grid
+          item
+          lg={9}
+          md={12}
+          sx={{
+            pl: { lg: 3, md: 0, sm: 0, xs: 0 },
+            mt: { lg: 0, md: 3, sm: 3, xs: 3 },
+          }}
+        >
           <Container
+            disableGutters
             sx={{
               backgroundColor: "tertiary.main",
               borderRadius: 3,
+              pl: { lg: 2, md: 2, sm: 2, xs: 1 },
+              pr: { lg: 2, md: 2, sm: 2, xs: 1 },
             }}
           >
-            <Stack direction="row" justifyContent="space-between">
-              <Tabs value={categoryIndex} sx={{ padding: "5px 10px" }}>
-                {currentMenu.map((menuCategory, i) => (
-                  <Tab
-                    label={menuCategory}
-                    onClick={() => setCategoryIndex(i)}
-                    key={uuidv4()}
-                    sx={{
-                      ml: 2,
-                      mr: 2,
-                      color: "#fff",
-                      "&:hover": {
-                        color: "primary.main",
-                      },
-                    }}
-                  />
-                ))}
-              </Tabs>
-              <Button
-                sx={{
-                  color: "#fff",
-                  textTransform: "capitalize",
-                  "&:hover": {
-                    transition: "0s",
-                    color: "primary.main",
-                    backgroundColor: "transparent",
-                  },
-                }}
-                onClick={() => dispatch(removeAll())}
-              >
-                clear all
-              </Button>
-            </Stack>
+            <Tabs
+              orientation="horizontal"
+              value={categoryIndex}
+              sx={{ padding: "5px 10px" }}
+            >
+              {currentMenu.map((menuCategory, i) => (
+                <Tab
+                  label={menuCategory}
+                  onClick={() => setCategoryIndex(i)}
+                  key={uuidv4()}
+                  sx={{
+                    ml: { lg: 2, md: 2, sm: 0, xs: 0 },
+                    mr: { lg: 2, md: 2, sm: 0, xs: 0 },
+                    color: "#fff",
+                    "&:hover": {
+                      color: "primary.main",
+                    },
+                  }}
+                />
+              ))}
+            </Tabs>
+
             <Grid
               container
               sx={{
@@ -124,6 +133,9 @@ const Shop = () => {
                   item
                   key={prod.id}
                   lg={6}
+                  md={6}
+                  sm={12}
+                  xs={12}
                   sx={{
                     mt: 2,
                     mb: 2,

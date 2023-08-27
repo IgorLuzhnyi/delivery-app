@@ -15,7 +15,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { MAX_PRODUCT_COUNT } from "../../../constants/constants";
 
 const CartProduct = ({ data }) => {
-  const { productName, img, count, price, id } = data;
+  const { product, isLastProduct } = data;
+  const { productName, img, count, price, id } = product;
   const [showWarning, setShowWarning] = useState(false);
   const [cartProductCount, setCartProductCount] = useState(count);
 
@@ -46,18 +47,18 @@ const CartProduct = ({ data }) => {
       direction="row"
       sx={{
         backgroundColor: "tertiary.main",
-        mb: 3,
+        mb: isLastProduct ? 0 : 3,
         borderRadius: "5px",
       }}
     >
       <CardMedia
         component="img"
-        height="200"
         image={img}
         alt={productName}
         sx={{
+          height: { lg: "200px", md: "200px", sm: "200px", xs: "150px" },
           borderRadius: "5px 0 0 5px",
-          maxWidth: "280px",
+          maxWidth: { lg: "280px", md: "200px", sm: "300px", xs: "150px" },
         }}
       />
       <Box
@@ -72,7 +73,7 @@ const CartProduct = ({ data }) => {
           {productName}
         </Typography>
         <Stack direction="row" sx={{ mt: 2, mb: 2, pl: 2, pr: 2 }}>
-          <IconButton onClick={() => dispatch(removeProduct(data))}>
+          <IconButton onClick={() => dispatch(removeProduct(product))}>
             <RemoveIcon sx={iconStyles} />
           </IconButton>
           <Tooltip

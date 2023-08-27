@@ -16,7 +16,8 @@ const Home = () => {
     <Container
       disableGutters
       sx={{
-        height: "100vh",
+        height: { lg: "100vh" },
+        pb: { lg: 0, md: 2, sm: 2, xs: 2 },
         color: "#fff",
         backgroundColor: "secondary.main",
       }}
