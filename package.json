@@ -1,6 +1,6 @@
 {
   "homepage": "https://IgorLuzhnyi.github.io/delivery-app",
-  "name": "elifrest",
+  "name": "delivery-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

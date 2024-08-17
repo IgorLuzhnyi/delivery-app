@@ -6,18 +6,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Shop from "./components/Shop/Shop";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
+import { rootPath } from "./constants/constants";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: rootPath,
     element: <Home />,
     children: [
       {
-        path: "shop/",
+        path: rootPath,
         element: <Shop />,
       },
       {
-        path: "shopping-cart",
+        path: `${rootPath}/shopping-cart`,
         element: <ShoppingCart />,
       },
     ],

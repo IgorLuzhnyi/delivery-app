@@ -18,8 +18,6 @@ const ShoppingCart = () => {
 
   const cart = useSelector((state) => state.cart);
 
-  console.log(cart);
-
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");

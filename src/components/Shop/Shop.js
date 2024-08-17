@@ -11,18 +11,13 @@ import {
 import Product from "./Product/Product";
 import { db } from "../../db/db";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 
 const Shop = () => {
   const [shopIndex, setShopIndex] = useState(0);
   const currentMenu = Object.keys(db[shopIndex].menu);
   const [categoryIndex, setCategoryIndex] = useState(0);
 
-  const cart = useSelector((state) => state.cart);
-
   useEffect(() => setCategoryIndex(0), [shopIndex]);
-
-  useEffect(() => console.log(cart), [cart]);
 
   return (
     <Container>
