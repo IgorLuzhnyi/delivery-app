@@ -33,7 +33,7 @@ const Product = ({ data }) => {
           title={
             reachedMaxCount
               ? `Maximum count of ${MAX_PRODUCT_COUNT} is reached`
-              : "Add to cart"
+              : "Add 1 to cart"
           }
           placement="top"
         >
@@ -44,7 +44,7 @@ const Product = ({ data }) => {
             <AddIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Remove from cart" placement="top">
+        <Tooltip title="Remove 1 from cart" placement="top">
           <IconButton
             size="small"
             onClick={() => dispatch(removeProduct(data))}
