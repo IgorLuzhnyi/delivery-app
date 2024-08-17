@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/delivery-app/static/js/main.9b3d3d83.js",
+    "index.html": "/delivery-app/index.html",
+    "main.9b3d3d83.js.map": "/delivery-app/static/js/main.9b3d3d83.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.9b3d3d83.js"
+  ]
+}
