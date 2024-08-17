@@ -27,7 +27,7 @@ const Product = ({ data }) => {
   const reachedMaxCount = productCount === MAX_PRODUCT_COUNT;
 
   return (
-    <Card sx={{ maxWidth: 345, position: "relative" }}>
+    <Card sx={{ maxWidth: 345, minWidth: 345, position: "relative" }}>
       <Box sx={{ p: 1, position: "absolute", right: 1 }}>
         <Tooltip
           title={

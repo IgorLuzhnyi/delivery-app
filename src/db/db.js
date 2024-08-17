@@ -353,7 +353,7 @@ export const db = [
         },
         {
           productName: "BURN 0,25l",
-          img: "https://chicken-hut.ua/images/gallery/120/chicken-hut-20170621090829-21526.jpg",
+          img: "https://aquamarket.ua/94618-large_default/burn-original-025-l-napij-energetichnij-bern-oridzhinal.jpg",
           description: "BURN 0,25l",
           price: 50,
           id: uuidv4(),
