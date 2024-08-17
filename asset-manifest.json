@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/delivery-app/static/js/main.b6c48e00.js",
-    "index.html": "/delivery-app/index.html",
-    "main.b6c48e00.js.map": "/delivery-app/static/js/main.b6c48e00.js.map"
+    "main.js": "/static/js/main.b6c48e00.js",
+    "index.html": "/index.html",
+    "main.b6c48e00.js.map": "/static/js/main.b6c48e00.js.map"
   },
   "entrypoints": [
     "static/js/main.b6c48e00.js"
